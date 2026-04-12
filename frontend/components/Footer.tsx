@@ -16,13 +16,13 @@ export default function Footer() {
             <h5 className="font-headline text-xs font-bold text-white tracking-widest uppercase">
               Protocol
             </h5>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/scanner">
               Scanner
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/live-shield">
               Shield
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/asset-health">
               Analytics
             </a>
           </div>
@@ -31,13 +31,18 @@ export default function Footer() {
             <h5 className="font-headline text-xs font-bold text-white tracking-widest uppercase">
               Ecosystem
             </h5>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a 
+              className="text-sm text-white/40 hover:text-white transition-colors" 
+              href="https://www.hashkey.com/en/hashkey-chain"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               HashKey Chain
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/docs">
               Partners
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/audits">
               Audits
             </a>
           </div>
@@ -46,13 +51,23 @@ export default function Footer() {
             <h5 className="font-headline text-xs font-bold text-white tracking-widest uppercase">
               Company
             </h5>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a className="text-sm text-white/40 hover:text-white transition-colors" href="/support">
               About
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a 
+              className="text-sm text-white/40 hover:text-white transition-colors" 
+              href="https://github.com/Venkat5599/Ghost-shell"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
-            <a className="text-sm text-white/40 hover:text-white transition-colors" href="#">
+            <a 
+              className="text-sm text-white/40 hover:text-white transition-colors" 
+              href="https://x.com/Archuser__"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Twitter
             </a>
           </div>

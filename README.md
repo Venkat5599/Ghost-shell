@@ -14,7 +14,7 @@
 
 ## 📋 Project Overview
 
-**Ghost Shell** is an AI-powered security platform that protects DeFi users from malicious contracts, risky wallets, and dangerous transactions on HashKey Chain. Inspired by Ghost in the Shell (攻殻機動隊), it acts as your personal Section 9 security team.
+**Ghost Shell** is an AI-powered security platform that protects DeFi users from malicious contracts, risky wallets, and dangerous transactions on HashKey Chain by Ghost in the Shell (攻殻機動隊), it acts as your personal Section 9 security team.
 
 ### What It Does
 

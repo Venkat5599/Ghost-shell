@@ -112,7 +112,14 @@ export default function AuditsPage() {
                       <div className="text-xs text-white/40 font-label">RISK SCORE</div>
                     </div>
 
-                    <button className="px-6 py-2 glass-panel rounded-full text-sm font-headline font-bold hover:bg-white/10 transition-colors">
+                    <button 
+                      onClick={() => {
+                        // Store the contract address in localStorage for the scanner to use
+                        localStorage.setItem('scanContract', audit.contractAddress)
+                        window.location.href = '/scanner'
+                      }}
+                      className="px-6 py-2 glass-panel rounded-full text-sm font-headline font-bold hover:bg-white/10 transition-colors"
+                    >
                       View Report
                     </button>
                   </div>

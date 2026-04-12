@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { scanContract, ScanResult } from '@/lib/api'
 
 export default function ContractScanner() {
@@ -9,14 +9,25 @@ export default function ContractScanner() {
   const [result, setResult] = useState<ScanResult | null>(null)
   const [error, setError] = useState<string | null>(null)
 
-  const handleScan = async () => {
-    if (!address) return
+  // Auto-fill from localStorage if coming from audits page
+  useEffect(() => {
+    const savedContract = localStorage.getItem('scanContract')
+    if (savedContract) {
+      setAddress(savedContract)
+      localStorage.removeItem('scanContract') // Clear after using
+      // Auto-scan
+      handleScanWithAddress(savedContract)
+    }
+  }, [])
+
+  const handleScanWithAddress = async (contractAddress: string) => {
+    if (!contractAddress) return
     
     setLoading(true)
     setError(null)
     
     try {
-      const scanResult = await scanContract(address)
+      const scanResult = await scanContract(contractAddress)
       setResult(scanResult)
       
       // Save to localStorage for Risk Map
@@ -28,6 +39,10 @@ export default function ContractScanner() {
       const stats = JSON.parse(localStorage.getItem('ghost-shell-stats') || '{"threatsBlocked":0,"contractsScanned":0,"walletsProtected":0}')
       stats.contractsScanned += 1
       if (scanResult.riskScore > 70) stats.threatsBlocked += 1
+  const handleScan = async () => {
+    await handleScanWithAddress(address)
+  }
+    await handleScanWithAddress(address)
       localStorage.setItem('ghost-shell-stats', JSON.stringify(stats))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to scan contract')

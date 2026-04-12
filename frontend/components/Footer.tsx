@@ -75,7 +75,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto mt-20 flex justify-between items-center border-t border-white/5 pt-8">
-        <span className="text-xs text-white/20">© 2024 GHOST SHELL. All rights secured.</span>
+        <span className="text-xs text-white/20">© 2026 GHOST SHELL. All rights secured.</span>
         <div className="flex gap-6 text-white/20 text-xs">
           <a className="hover:text-white transition-colors" href="#">
             Privacy Policy

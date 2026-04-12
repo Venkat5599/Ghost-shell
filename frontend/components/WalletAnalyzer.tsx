@@ -138,10 +138,6 @@ export default function WalletAnalyzer() {
                 <td>${result.transactionCount.toLocaleString()}</td>
               </tr>
               <tr>
-                <td>Balance</td>
-                <td>${result.balance || 'N/A'} ETH</td>
-              </tr>
-              <tr>
                 <td>Suspicious Interactions</td>
                 <td>${result.suspiciousInteractions}</td>
               </tr>
@@ -221,7 +217,6 @@ export default function WalletAnalyzer() {
         risk_level: result.riskLevel,
         risk_score: result.riskScore,
         transaction_count: result.transactionCount,
-        balance: result.balance,
         suspicious_interactions: result.suspiciousInteractions,
         first_seen: result.firstSeen,
         last_activity: result.lastActivity,

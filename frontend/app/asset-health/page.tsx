@@ -50,7 +50,7 @@ export default function AssetHealthPage() {
       console.log('Connected to network:', network.chainId.toString())
       
       // If not on HashKey Testnet (133), try to switch
-      if (network.chainId !== 133n) {
+      if (Number(network.chainId) !== 133) {
         console.log('Not on HashKey Testnet, attempting to switch...')
         try {
           await window.ethereum!.request({

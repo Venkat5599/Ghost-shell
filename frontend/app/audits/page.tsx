@@ -2,15 +2,27 @@
 
 import { useState } from 'react'
 
+type AuditStatus = 'safe' | 'warning' | 'critical'
+
+interface Audit {
+  id: string
+  contractAddress: string
+  contractName: string
+  date: string
+  riskScore: number
+  status: AuditStatus
+  issues: number
+}
+
 export default function AuditsPage() {
-  const [audits] = useState([
+  const [audits] = useState<Audit[]>([
     {
       id: '1',
       contractAddress: '0x2CD70324C4043D90f3C45D6ac7E84aB828708205',
       contractName: 'GhostShellRegistry',
       date: '2026-04-12',
       riskScore: 60,
-      status: 'warning' as const,
+      status: 'warning',
       issues: 3,
     },
     {
@@ -19,7 +31,7 @@ export default function AuditsPage() {
       contractName: 'SecureVault',
       date: '2026-04-12',
       riskScore: 45,
-      status: 'warning' as const,
+      status: 'warning',
       issues: 2,
     },
   ])

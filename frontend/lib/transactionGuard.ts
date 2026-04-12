@@ -68,16 +68,16 @@ export class TransactionGuard {
       // Perform risk check via API
       const result = await checkRisk(tx.to, tx.from || '')
 
-      const allowed = result.overallRisk < 70 // Block if risk > 70
-      const riskLevel = result.overallRisk > 70 ? 'critical' : 
-                       result.overallRisk > 40 ? 'warning' : 'safe'
+      const allowed = result.overallRiskScore < 70 // Block if risk > 70
+      const riskLevel = result.overallRiskScore > 70 ? 'critical' : 
+                       result.overallRiskScore > 40 ? 'warning' : 'safe'
 
       return {
         allowed,
         riskLevel,
-        overallRisk: result.overallRisk,
-        warnings: result.warnings || [],
-        recommendation: result.recommendation || 'Proceed with caution'
+        overallRisk: result.overallRiskScore,
+        warnings: [],
+        recommendation: result.recommendation
       }
     } catch (error) {
       console.error('Risk check failed:', error)

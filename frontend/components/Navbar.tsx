@@ -147,9 +147,6 @@ export default function Navbar() {
               }`}>
                 security
               </span>
-              {shieldStatus.active && (
-                <span className="absolute -bottom-1 -right-1 w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-              )}
             </button>
 
             {showShield && (

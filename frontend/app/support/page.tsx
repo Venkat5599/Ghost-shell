@@ -55,25 +55,6 @@ export default function SupportPage() {
           </div>
 
           <div className="glass-panel rounded-lg p-6 border-white/10 hover:border-white/20 transition-colors">
-            <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-              <span className="material-symbols-outlined text-2xl text-green-500">forum</span>
-            </div>
-            <h3 className="font-headline font-bold text-lg mb-2">Community</h3>
-            <p className="text-white/60 text-sm mb-4">
-              Join our Discord for community support
-            </p>
-            <a
-              href="https://discord.gg/ghostshell"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-400 text-sm font-label hover:text-green-300 transition-colors flex items-center gap-1"
-            >
-              Join Discord
-              <span className="material-symbols-outlined text-sm">open_in_new</span>
-            </a>
-          </div>
-
-          <div className="glass-panel rounded-lg p-6 border-white/10 hover:border-white/20 transition-colors">
             <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-2xl text-purple-500">code</span>
             </div>

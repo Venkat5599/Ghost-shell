@@ -39,10 +39,6 @@ export default function ContractScanner() {
       const stats = JSON.parse(localStorage.getItem('ghost-shell-stats') || '{"threatsBlocked":0,"contractsScanned":0,"walletsProtected":0}')
       stats.contractsScanned += 1
       if (scanResult.riskScore > 70) stats.threatsBlocked += 1
-  const handleScan = async () => {
-    await handleScanWithAddress(address)
-  }
-    await handleScanWithAddress(address)
       localStorage.setItem('ghost-shell-stats', JSON.stringify(stats))
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to scan contract')
@@ -50,6 +46,10 @@ export default function ContractScanner() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleScan = async () => {
+    await handleScanWithAddress(address)
   }
 
   const handleViewFullReport = () => {

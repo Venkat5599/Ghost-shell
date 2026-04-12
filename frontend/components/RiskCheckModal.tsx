@@ -185,31 +185,15 @@ export default function RiskCheckModal({ onClose }: RiskCheckModalProps) {
               </p>
             </div>
 
-            {/* Actions */}
-            <div className="w-full space-y-4">
-              <button 
-                onClick={() => {
-                  if (result?.overallRiskLevel === 'critical') {
-                    if (confirm('⚠️ CRITICAL RISK DETECTED!\n\nThis transaction has a very high risk score. Proceeding may result in loss of funds.\n\nAre you absolutely sure you want to continue?')) {
-                      alert('✅ Transaction approved by user.\n\nIn a production environment, this would execute the transaction.')
-                      onClose()
-                    }
-                  } else {
-                    alert('✅ Transaction approved.\n\nIn a production environment, this would execute the transaction.')
-                    onClose()
-                  }
-                }}
-                className="w-full bg-white text-black font-headline font-bold py-4 rounded-full hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/10"
-              >
-                Proceed Anyway
-              </button>
+            {/* Close Button */}
+            {result && (
               <button
                 onClick={onClose}
-                className="w-full bg-transparent text-white font-headline font-medium py-4 rounded-full border border-white/10 hover:bg-white/5 transition-all"
+                className="w-full bg-white text-black font-headline font-bold py-4 rounded-full hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-white/10"
               >
-                Cancel Transaction
+                Close
               </button>
-            </div>
+            )}
 
             {/* Footnote */}
             <div className="mt-6 flex items-center gap-2 opacity-40">

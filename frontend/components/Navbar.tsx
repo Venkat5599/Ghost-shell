@@ -9,6 +9,7 @@ export default function Navbar() {
   const pathname = usePathname()
   const [showNotifications, setShowNotifications] = useState(false)
   const [showShield, setShowShield] = useState(false)
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true)
   
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/'
@@ -21,6 +22,15 @@ export default function Navbar() {
     { id: 2, type: 'success', message: 'Contract scan completed', time: '5 min ago' },
     { id: 3, type: 'info', message: 'New security update available', time: '1 hour ago' },
   ]
+
+  const handleNotificationClick = () => {
+    setShowNotifications(!showNotifications)
+    setShowShield(false)
+    // Mark as read when opening
+    if (!showNotifications) {
+      setHasUnreadNotifications(false)
+    }
+  }
 
   // Shield status
   const shieldStatus = {
@@ -75,16 +85,13 @@ export default function Navbar() {
           {/* Notifications */}
           <div className="relative">
             <button
-              onClick={() => {
-                setShowNotifications(!showNotifications)
-                setShowShield(false)
-              }}
+              onClick={handleNotificationClick}
               className="relative"
             >
               <span className="material-symbols-outlined text-white/70 cursor-pointer hover:text-white transition-colors">
                 notifications
               </span>
-              {notifications.length > 0 && (
+              {hasUnreadNotifications && notifications.length > 0 && (
                 <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center text-white font-bold">
                   {notifications.length}
                 </span>

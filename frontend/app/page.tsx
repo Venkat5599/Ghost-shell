@@ -4,7 +4,6 @@ import { useState } from 'react'
 import ContractScanner from '@/components/ContractScanner'
 import WalletAnalyzer from '@/components/WalletAnalyzer'
 import RiskCheckModal from '@/components/RiskCheckModal'
-import Sidebar from '@/components/Sidebar'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'contract' | 'wallet'>('contract')
@@ -17,9 +16,6 @@ export default function Home() {
         <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blur-purple opacity-40"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[800px] h-[800px] bg-blur-cyan opacity-30"></div>
       </div>
-
-      {/* Sidebar */}
-      <Sidebar />
 
       {/* Main Content */}
       <main className="relative z-10 pt-44 pb-20 px-8 flex flex-col items-center text-center">

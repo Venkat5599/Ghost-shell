@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PlumBackground from '@/components/PlumBackground'
+import Sidebar from '@/components/Sidebar'
 
 export const metadata: Metadata = {
   title: 'GHOST SHELL - 攻殻機動隊 Security Protocol',
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body className="bg-black text-white antialiased selection:bg-secondary selection:text-black overflow-x-hidden">
         <PlumBackground />
         <Navbar />
+        <Sidebar />
         {children}
         <Footer />
       </body>

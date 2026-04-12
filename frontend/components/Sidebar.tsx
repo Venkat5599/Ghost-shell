@@ -99,13 +99,17 @@ export default function Sidebar() {
             <span className="font-label text-[10px] uppercase tracking-widest">Risk Map</span>
           </Link>
           
-          <button
-            onClick={() => alert('Settings coming soon!')}
-            className="text-white/40 hover:text-white mx-4 py-3 px-6 flex items-center gap-4 hover:translate-x-2 transition-all duration-300 text-left"
+          <Link
+            href="/settings"
+            className={`${
+              isActive('/settings') 
+                ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
+                : 'text-white/40 hover:text-white'
+            } rounded-full mx-4 py-3 px-6 flex items-center gap-4 transition-all duration-300 hover:translate-x-2`}
           >
-            <span className="material-symbols-outlined">settings</span>
+            <span className="material-symbols-outlined" style={{ fontVariationSettings: isActive('/settings') ? "'FILL' 1" : "'FILL' 0" }}>settings</span>
             <span className="font-label text-[10px] uppercase tracking-widest">Settings</span>
-          </button>
+          </Link>
         </nav>
 
         <div className="mt-auto px-8 pt-8 border-t border-white/5">

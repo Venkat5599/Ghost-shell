@@ -19,9 +19,9 @@ export default function Sidebar() {
   }
 
   return (
-    <>
+    <div className="group">
       {/* Sidebar Hint - Pulsing indicator */}
-      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 hidden xl:block group-hover:opacity-0 transition-opacity pointer-events-none">
+      <div className="fixed left-0 top-1/2 -translate-y-1/2 z-30 hidden xl:block pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
         <div className="relative">
           {/* Pulsing circles */}
           <div className="absolute w-3 h-3 bg-white/30 rounded-full animate-ping"></div>
@@ -34,7 +34,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <aside className="group fixed left-0 top-16 w-72 h-[calc(100vh-4rem)] flex-col py-8 z-40 bg-black/40 backdrop-blur-2xl rounded-r-xl my-4 bg-white/5 shadow-[40px_0_40px_rgba(195,192,255,0.05)] hidden xl:flex -translate-x-[calc(100%-1rem)] hover:translate-x-4 transition-transform duration-300 ease-in-out">
+      <aside className="fixed left-0 top-16 w-72 h-[calc(100vh-4rem)] flex-col py-8 z-40 bg-black/40 backdrop-blur-2xl rounded-r-xl my-4 bg-white/5 shadow-[40px_0_40px_rgba(195,192,255,0.05)] hidden xl:flex -translate-x-[calc(100%-1rem)] group-hover:translate-x-4 transition-transform duration-300 ease-in-out">
         <div className="px-8 mb-10">
           <h3 className="text-xl font-black text-white font-headline">Section 9 Node</h3>
           <p className="text-[10px] text-white/40 uppercase tracking-[0.2em] font-label">
@@ -133,6 +133,6 @@ export default function Sidebar() {
           </div>
         </div>
       </aside>
-    </>
+    </div>
   )
 }

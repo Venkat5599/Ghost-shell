@@ -500,24 +500,6 @@ curl -X POST http://localhost:3001/api/analyze-wallet \
 
 ---
 
-## 💰 Cost Breakdown
-
-```
-┌──────────────────────┬──────────────┬─────────────────────┐
-│ Service              │ Cost/Month   │ Tier                │
-├──────────────────────┼──────────────┼─────────────────────┤
-│ Smart Contracts      │ $0           │ Testnet             │
-│ Backend (Vercel)     │ $0           │ Free (100GB-hours)  │
-│ Frontend (Vercel)    │ $0           │ Free (100GB)        │
-│ Groq AI              │ $0           │ Free Tier           │
-│ HashKey Testnet      │ $0           │ Free                │
-├──────────────────────┼──────────────┼─────────────────────┤
-│ TOTAL                │ $0/month     │ 🎉 COMPLETELY FREE! │
-└──────────────────────┴──────────────┴─────────────────────┘
-```
-
----
-
 ## 📈 Roadmap
 
 - [x] Core contracts deployed & verified
@@ -528,12 +510,10 @@ curl -X POST http://localhost:3001/api/analyze-wallet \
 - [x] Backend API with Vercel serverless
 - [x] Real blockchain data (no mocks)
 - [x] Documentation complete
-- [ ] Security audit
 - [ ] Mainnet deployment
 - [ ] Multi-chain support
 - [ ] Mobile app
 - [ ] Browser extension
-
 ---
 
 ## 🤝 Contributing
@@ -561,17 +541,6 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 - Powered by **Groq AI** (llama-3.3-70b-versatile)
 - UI design inspired by **glassmorphism** and **cyberpunk aesthetics**
 - Special thanks to the **HashKey Chain** team for testnet support
-
----
-
-## 📞 Support
-
-Need help? We're here for you:
-
-- **Documentation:** [/docs](./docs)
-- **Issues:** [GitHub Issues](https://github.com/Venkat5599/Ghost-shell/issues)
-- **Email:** support@ghostshell.io
-- **Twitter:** [@GhostShellSec](https://twitter.com/GhostShellSec)
 
 ---
 

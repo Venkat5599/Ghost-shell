@@ -35,6 +35,28 @@ With Ghost Shell:      User → AI Check → Block → Assets Safe
 
 ---
 
+## 🚨 Why Ghost Shell Matters NOW
+
+### Recent Security Crisis: Polkadot Exploit (April 2026)
+
+An attacker exploited Polkadot's system to mint **1 billion $DOT tokens** and dumped them for **$237K** in a single transaction. This happened on an established, audited blockchain with years of security reviews.
+
+**What This Proves:**
+- ✅ Even major ecosystems are vulnerable
+- ✅ Traditional audits are not enough
+- ✅ Real-time protection is critical
+- ✅ Users need AI-powered security layers
+
+**How Ghost Shell Would Have Helped:**
+- 🛡️ Real-time transaction monitoring would detect the anomalous mint
+- 🤖 AI analysis would flag the suspicious 1B token creation
+- ⚠️ Pre-execution risk check would warn users before interacting
+- 🔒 On-chain verification would prevent interaction with compromised contracts
+
+> "Security can't be reactive anymore. Ghost Shell makes it proactive."
+
+---
+
 ## 🌐 Why This Matters for HashKey Chain
 
 ### The DeFi Security Problem

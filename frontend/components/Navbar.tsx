@@ -2,32 +2,67 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useAccount } from 'wagmi'
 import WalletConnect from './WalletConnect'
+
+interface Notification {
+  id: string
+  type: 'warning' | 'success' | 'info'
+  message: string
+  time: string
+  timestamp: number
+}
 
 export default function Navbar() {
   const pathname = usePathname()
+  const { isConnected } = useAccount()
   const [showNotifications, setShowNotifications] = useState(false)
   const [showShield, setShowShield] = useState(false)
-  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(true)
+  const [notifications, setNotifications] = useState<Notification[]>([])
+  const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false)
   
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/'
     return pathname?.startsWith(path)
   }
 
-  // Mock notifications
-  const notifications = [
-    { id: 1, type: 'warning', message: 'High risk transaction detected', time: '2 min ago' },
-    { id: 2, type: 'success', message: 'Contract scan completed', time: '5 min ago' },
-    { id: 3, type: 'info', message: 'New security update available', time: '1 hour ago' },
-  ]
+  // Load notifications from localStorage on mount
+  useEffect(() => {
+    if (isConnected) {
+      const stored = localStorage.getItem('ghost_shell_notifications')
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        setNotifications(parsed)
+        setHasUnreadNotifications(parsed.length > 0)
+      }
+    } else {
+      // Clear notifications when wallet disconnected
+      setNotifications([])
+      setHasUnreadNotifications(false)
+    }
+  }, [isConnected])
+
+  // Listen for new notifications
+  useEffect(() => {
+    const handleNewNotification = () => {
+      const stored = localStorage.getItem('ghost_shell_notifications')
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        setNotifications(parsed)
+        setHasUnreadNotifications(true)
+      }
+    }
+
+    window.addEventListener('ghost_shell_notification', handleNewNotification)
+    return () => window.removeEventListener('ghost_shell_notification', handleNewNotification)
+  }, [])
 
   const handleNotificationClick = () => {
     setShowNotifications(!showNotifications)
     setShowShield(false)
     // Mark as read when opening
-    if (!showNotifications) {
+    if (!showNotifications && notifications.length > 0) {
       setHasUnreadNotifications(false)
     }
   }
@@ -110,32 +145,49 @@ export default function Navbar() {
                   </button>
                 </div>
                 <div className="space-y-3 max-h-96 overflow-y-auto">
-                  {notifications.map((notif) => (
-                    <div
-                      key={notif.id}
-                      className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
-                    >
-                      <div className="flex items-start gap-3">
-                        <span className={`material-symbols-outlined text-sm ${
-                          notif.type === 'warning' ? 'text-yellow-500' :
-                          notif.type === 'success' ? 'text-green-500' :
-                          'text-blue-500'
-                        }`}>
-                          {notif.type === 'warning' ? 'warning' :
-                           notif.type === 'success' ? 'check_circle' :
-                           'info'}
-                        </span>
-                        <div className="flex-1">
-                          <p className="text-sm text-white/90">{notif.message}</p>
-                          <p className="text-xs text-white/40 mt-1">{notif.time}</p>
+                  {notifications.length === 0 ? (
+                    <div className="text-center py-8 text-white/40">
+                      <span className="material-symbols-outlined text-4xl mb-2 block">notifications_off</span>
+                      <p className="text-sm">No notifications yet</p>
+                      <p className="text-xs mt-1">Activity will appear here</p>
+                    </div>
+                  ) : (
+                    notifications.map((notif) => (
+                      <div
+                        key={notif.id}
+                        className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className={`material-symbols-outlined text-sm ${
+                            notif.type === 'warning' ? 'text-yellow-500' :
+                            notif.type === 'success' ? 'text-green-500' :
+                            'text-blue-500'
+                          }`}>
+                            {notif.type === 'warning' ? 'warning' :
+                             notif.type === 'success' ? 'check_circle' :
+                             'info'}
+                          </span>
+                          <div className="flex-1">
+                            <p className="text-sm text-white/90">{notif.message}</p>
+                            <p className="text-xs text-white/40 mt-1">{notif.time}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </div>
-                <button className="w-full mt-3 py-2 text-xs text-white/60 hover:text-white transition-colors">
-                  View All Notifications
-                </button>
+                {notifications.length > 0 && (
+                  <button 
+                    onClick={() => {
+                      setNotifications([])
+                      localStorage.removeItem('ghost_shell_notifications')
+                      setHasUnreadNotifications(false)
+                    }}
+                    className="w-full mt-3 py-2 text-xs text-white/60 hover:text-white transition-colors"
+                  >
+                    Clear All
+                  </button>
+                )}
               </div>
             )}
           </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { analyzeWallet, WalletRiskReport } from '@/lib/api'
+import { addNotification } from '@/lib/notifications'
 
 export default function WalletAnalyzer() {
   const [address, setAddress] = useState('')
@@ -20,6 +21,15 @@ export default function WalletAnalyzer() {
       
       setResult(report)
       
+      // Add notification based on risk level
+      if (report.riskScore > 70) {
+        addNotification('warning', `High risk wallet detected (${report.riskScore}/100)`)
+      } else if (report.riskScore > 40) {
+        addNotification('info', `Medium risk wallet analyzed (${report.riskScore}/100)`)
+      } else {
+        addNotification('success', `Wallet analysis completed - Low risk (${report.riskScore}/100)`)
+      }
+      
       // Save to localStorage for Risk Map
       const history = JSON.parse(localStorage.getItem('ghost-shell-scan-history') || '[]')
       history.unshift({ ...report, walletAddress: address })
@@ -33,6 +43,7 @@ export default function WalletAnalyzer() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze wallet')
       setResult(null)
+      addNotification('warning', 'Wallet analysis failed')
     } finally {
       setLoading(false)
     }

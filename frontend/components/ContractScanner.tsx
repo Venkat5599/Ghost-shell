@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { scanContract, ScanResult } from '@/lib/api'
+import { addNotification } from '@/lib/notifications'
 
 export default function ContractScanner() {
   const [address, setAddress] = useState('')
@@ -30,6 +31,15 @@ export default function ContractScanner() {
       const scanResult = await scanContract(contractAddress)
       setResult(scanResult)
       
+      // Add notification based on risk level
+      if (scanResult.riskScore > 70) {
+        addNotification('warning', `High risk contract detected (${scanResult.riskScore}/100)`)
+      } else if (scanResult.riskScore > 40) {
+        addNotification('info', `Medium risk contract scanned (${scanResult.riskScore}/100)`)
+      } else {
+        addNotification('success', `Contract scan completed - Low risk (${scanResult.riskScore}/100)`)
+      }
+      
       // Save to localStorage for Risk Map
       const history = JSON.parse(localStorage.getItem('ghost-shell-scan-history') || '[]')
       history.unshift(scanResult)
@@ -43,6 +53,7 @@ export default function ContractScanner() {
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to scan contract')
       setResult(null)
+      addNotification('warning', 'Contract scan failed')
     } finally {
       setLoading(false)
     }

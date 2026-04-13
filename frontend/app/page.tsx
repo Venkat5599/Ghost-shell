@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ContractScanner from '@/components/ContractScanner'
 import WalletAnalyzer from '@/components/WalletAnalyzer'
 import RiskCheckModal from '@/components/RiskCheckModal'
+import AnomalyMonitor from '@/components/AnomalyMonitor'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<'contract' | 'wallet'>('contract')
@@ -106,6 +107,11 @@ export default function Home() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Anomaly Monitor Section */}
+        <section className="w-full max-w-5xl mt-16 px-4">
+          <AnomalyMonitor />
         </section>
       </main>
 

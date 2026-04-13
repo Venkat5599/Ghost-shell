@@ -13,6 +13,7 @@ import healthHandler from './api/health'
 import scanContractHandler from './api/scan-contract'
 import analyzeWalletHandler from './api/analyze-wallet'
 import riskCheckHandler from './api/risk-check'
+import anomalyCheckHandler from './api/anomaly-check'
 
 dotenv.config()
 
@@ -67,6 +68,7 @@ app.get('/api/health', wrapVercelHandler(healthHandler))
 app.post('/api/scan-contract', wrapVercelHandler(scanContractHandler))
 app.post('/api/analyze-wallet', wrapVercelHandler(analyzeWalletHandler))
 app.post('/api/risk-check', wrapVercelHandler(riskCheckHandler))
+app.post('/api/anomaly-check', wrapVercelHandler(anomalyCheckHandler))
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -79,6 +81,7 @@ app.get('/', (req, res) => {
       'POST /api/scan-contract',
       'POST /api/analyze-wallet',
       'POST /api/risk-check',
+      'POST /api/anomaly-check',
     ],
   })
 })
@@ -94,6 +97,7 @@ app.listen(PORT, () => {
   console.log(`   POST http://localhost:${PORT}/api/scan-contract`)
   console.log(`   POST http://localhost:${PORT}/api/analyze-wallet`)
   console.log(`   POST http://localhost:${PORT}/api/risk-check`)
+  console.log(`   POST http://localhost:${PORT}/api/anomaly-check`)
   console.log('\n🔗 Frontend should use: http://localhost:' + PORT + '/api')
   console.log('═══════════════════════════════════════════════════\n')
 })

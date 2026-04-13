@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { useAccount } from 'wagmi'
 import WalletConnect from './WalletConnect'
 
 interface Notification {
@@ -16,11 +15,32 @@ interface Notification {
 
 export default function Navbar() {
   const pathname = usePathname()
-  const { isConnected } = useAccount()
   const [showNotifications, setShowNotifications] = useState(false)
   const [showShield, setShowShield] = useState(false)
   const [notifications, setNotifications] = useState<Notification[]>([])
   const [hasUnreadNotifications, setHasUnreadNotifications] = useState(false)
+  const [isConnected, setIsConnected] = useState(false)
+
+  // Check wallet connection status (client-side only)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Check if wallet is connected via localStorage or window.ethereum
+      const checkConnection = () => {
+        const connected = localStorage.getItem('wagmi.connected') === 'true' || 
+                         (window as any).ethereum?.selectedAddress
+        setIsConnected(!!connected)
+      }
+      checkConnection()
+      
+      // Listen for account changes
+      if ((window as any).ethereum) {
+        (window as any).ethereum.on('accountsChanged', checkConnection)
+        return () => {
+          (window as any).ethereum?.removeListener('accountsChanged', checkConnection)
+        }
+      }
+    }
+  }, [])
   
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/'

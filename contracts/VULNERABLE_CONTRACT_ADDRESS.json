@@ -1,0 +1,17 @@
+{
+  "network": "HashKey Chain Testnet",
+  "chainId": 133,
+  "vulnerableContract": "0x7ef356Dc9357F0CAe505676817c08f947F71AFa6",
+  "deployer": "0x1E0048D83ba01D823dc852cfabeb94fC76B089B7",
+  "timestamp": "2026-04-19T11:29:40.185Z",
+  "explorerUrl": "https://testnet-explorer.hsk.xyz/address/0x7ef356Dc9357F0CAe505676817c08f947F71AFa6",
+  "vulnerabilities": [
+    "Reentrancy",
+    "Missing Access Control",
+    "Dangerous Delegatecall",
+    "Unchecked External Calls",
+    "tx.origin Authentication"
+  ],
+  "expectedRiskScore": "90-100",
+  "expectedAction": "BLOCKED"
+}

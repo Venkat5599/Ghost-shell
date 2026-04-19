@@ -21,8 +21,46 @@ export class ContractScanner {
     // Fetch contract bytecode
     const bytecode = await this.provider.getCode(address)
     
+    // If no bytecode, this is a regular wallet (EOA), not a contract
     if (bytecode === '0x') {
-      throw new Error('No contract found at this address')
+      // Return safe result for regular wallets
+      const scanDuration = Date.now() - startTime
+      const blockNumber = await this.provider.getBlockNumber()
+      
+      return {
+        contractAddress: address,
+        chainId: config.hashkeyChain.chainId,
+        riskScore: 0,
+        status: 'safe',
+        issues: [],
+        aiExplanation: 'This is a regular wallet address (EOA), not a smart contract. No contract vulnerabilities to scan.',
+        manifest: {
+          version: '1.0.0',
+          manifestId: uuidv4(),
+          timestamp: new Date().toISOString(),
+          chainId: config.hashkeyChain.chainId,
+          contractAddress: address,
+          riskScore: 0,
+          status: 'safe',
+          issues: [],
+          aiVerification: {
+            explanation: 'Regular wallet address - no contract code to analyze',
+            attackScenarios: [],
+            recommendations: [],
+            model: config.groq.model,
+            confidence: 1.0,
+          },
+          metadata: {
+            scannerVersion: '1.0.0',
+            scanDuration,
+            cacheHit: false,
+            blockNumber,
+          },
+        },
+        timestamp: new Date().toISOString(),
+        scanDuration,
+        cacheHit: false,
+      }
     }
 
     // Get current block number for metadata
@@ -198,16 +236,16 @@ export class ContractScanner {
     for (const issue of issues) {
       switch (issue.severity) {
         case 'critical':
-          score += 30
+          score += 35 // Increased from 30
           break
         case 'high':
-          score += 20
+          score += 25 // Increased from 20
           break
         case 'medium':
-          score += 10
+          score += 15 // Increased from 10
           break
         case 'low':
-          score += 5
+          score += 8 // Increased from 5
           break
       }
     }
